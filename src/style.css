@@ -10,3 +10,32 @@ html, body {
   height: 100vh;
   width: 100%;
 }
+
+.popup-list {
+  padding: 0;
+  list-style: none;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.mushroom-color-red {
+  -webkit-filter: hue-rotate(340deg); 
+  filter: hue-rotate(340deg);
+}
+
+.mushroom-color-green {
+  -webkit-filter: hue-rotate(95deg);
+  filter: hue-rotate(95deg);
+}
+
+.mushroom-color-yellow {
+  -webkit-filter: sepia(1) contrast(1.5) brightness(2.2);
+  filter: sepia(1) contrast(1.5) brightness(2.2);
+}
+
+.mushroom-color-blue {
+  -webkit-filter: hue-rotate(205deg);
+  filter: hue-rotate(205deg);
+}
