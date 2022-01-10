@@ -4,16 +4,18 @@ import mushrooms, {
   Color,
   Spots,
 } from './api/api';
+import { EnumInterface, OptionInterface } from './types';
 
-import './style.css'
+import './style.css';
 import 'leaflet/dist/leaflet.css';
 
 //Define globals.
 const mapElm = document.querySelector<HTMLDivElement>('#map')!;
-const loadingElm = document.querySelector<HTMLDivElement>('#loading-mushrooms')!;
+const loadingElm =
+  document.querySelector<HTMLDivElement>('#loading-mushrooms')!;
 const filtersElm = document.querySelector<HTMLDivElement>('#filters')!;
-const colorsFilterElm = document.querySelector<HTMLDivElement>('#colors')!;
-const spotsFilterElm = document.querySelector<HTMLDivElement>('#spots')!;
+const colorsFilterElm = document.querySelector<HTMLSelectElement>('#colors')!;
+const spotsFilterElm = document.querySelector<HTMLSelectElement>('#spots')!;
 
 let map: Map;
 let mushroomData: MushroomInterface[] | never[] = [];
@@ -26,7 +28,7 @@ const mushroomIcon = new Icon({
 
 /**
  * Initialize openstreetmap map.
- * 
+ *
  * @returns void
  */
 const initMap = (): void => {
@@ -48,7 +50,7 @@ const initMap = (): void => {
  * @param mushroom
  * @returns string
  */
- const generatePopUpHTML = (mushroom: MushroomInterface): string => {
+const generatePopUpHTML = (mushroom: MushroomInterface): string => {
   let popUpHtml: string = '<ul class="popup-list">';
   popUpHtml += `<li class="capitalize">Name: ${mushroom.name}</li>`;
   popUpHtml += `<li class="capitalize">Spots: ${Spots[mushroom.spots]}</li>`;
@@ -63,7 +65,7 @@ const initMap = (): void => {
  *
  * @return void
  */
- const placeMapMarkers = (): void => {
+const placeMapMarkers = (): void => {
   mushroomData.forEach((mushroom: MushroomInterface) => {
     const popUpHtml: string = generatePopUpHTML(mushroom);
     const marker: Marker = new Marker(mushroom.latlng, { icon: mushroomIcon })
@@ -82,10 +84,10 @@ const initMap = (): void => {
  *
  * @returns Promise<MushroomInterface[]>
  */
- const getMushroomData = async (): Promise<MushroomInterface[]> => {
+const getMushroomData = async (): Promise<MushroomInterface[]> => {
   return await mushrooms()
     .then((data) => {
-      mushroomData = data
+      mushroomData = data;
       loadingElm.classList.add('hidden');
       filtersElm.classList.remove('hidden');
       return data;
@@ -94,14 +96,53 @@ const initMap = (): void => {
 };
 
 /**
+ * Create filter and append it to filtersWrapElm
+ *
+ * @param id
+ * @param options
+ * @return void
+ */
+const createFilter = (
+  filterElm: HTMLSelectElement,
+  options: OptionInterface[]
+): void => {
+  // Add options to select element.
+  options.forEach((object: OptionInterface) => {
+    const option: HTMLOptionElement = document.createElement('option');
+    option.value = object.value.toString();
+    option.label = object.label
+      .toLowerCase()
+      .replace(/^./, object.label[0].toUpperCase());
+
+    filterElm.add(option);
+  });
+};
+
+/**
+ * Convert TS Enum To Array of Objects.
+ *
+ * @param e
+ * @return OptionInterface[]
+ */
+const convertEnumToArray = (e: EnumInterface): OptionInterface[] =>
+  Object.values(e)
+    .filter((value) => typeof value === 'string')
+    .map((label, index) => ({
+      label,
+      value: index.toString(),
+    }));
+
+/**
  * Init function.
  *
  * @return void
  */
- const init = async (): Promise<void> => {
+const init = async (): Promise<void> => {
   initMap();
   await getMushroomData();
   placeMapMarkers();
+  createFilter(colorsFilterElm, convertEnumToArray(Color));
+  createFilter(spotsFilterElm, convertEnumToArray(Spots));
 };
 
 init();
