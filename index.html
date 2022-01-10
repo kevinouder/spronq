@@ -8,12 +8,18 @@
   </head>
   <body>
     <div id="filters" class="hidden">
-      <select id="colors" name="color" class="filter">
-        <option disabled selected>Select a value</option>
-      </select>
-      <select id="spots" name="spots" class="filter">
-        <option disabled selected>Select a value</option>
-      </select>
+      <div class="filter-wrap">
+        <select id="colors" name="color" class="filter">
+          <option value="" disabled selected>Select a value</option>
+        </select>
+        <button class="filter-button">Clear filter</button>
+      </div>
+      <div class="filter-wrap">
+        <select id="spots" name="spots" class="filter">
+          <option value="" disabled selected>Select a value</option>
+        </select>
+        <button class="filter-button">Clear filter</button>
+      </div>
     </div>
     <div id="map"></div>
     <div id="loading-mushrooms">

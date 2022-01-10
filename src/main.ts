@@ -116,6 +116,12 @@ const createFilter = (
 
     filterElm.add(option);
   });
+
+  const buttonElm: HTMLButtonElement | never = filterElm?.nextElementSibling as HTMLButtonElement;
+  buttonElm?.addEventListener('click', () => filterElm.value = '');
+  
+  // Add on change eventlistener.
+  filterElm.addEventListener('change', () => console.log('go filter'));
 };
 
 /**
