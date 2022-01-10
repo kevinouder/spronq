@@ -15,5 +15,5 @@ First run `npm install` or `yarn install` to install development dependencies
  - [x] Render the mushrooms on a OpenStreetMap.
  - [x] If you click on one of the mushrooms it should show a popup with the mushroom properties.
  - [x] Show two selectboxes to filter the mushrooms on respectivaly the spots and color properties.
-    - [ ] On value change show/hide markers.
- - [ ] Both selectboxes have a button to clear the selection.
+    - [x] On value change show/hide markers.
+ - [x] Both selectboxes have a button to clear the selection.
