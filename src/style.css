@@ -11,26 +11,25 @@ html, body {
   width: 100%;
 }
 
-#loading-mushrooms {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 999;
+/* Filter styling */
+#filters {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 450ms ease-in-out;
+  gap: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
 }
 
-#loading-mushrooms.hidden {
-  opacity: 0;
-  pointer-events: none;
+#filters.hidden {
+  display: none;
 }
 
+.filter {
+  padding: 5px 20px 5px 0;
+}
+
+/* Popup styling */
 .popup-list {
   padding: 0;
   list-style: none;
@@ -40,6 +39,7 @@ html, body {
   text-transform: capitalize;
 }
 
+/* Mushroom colors */
 .mushroom-color-red {
   -webkit-filter: hue-rotate(340deg); 
   filter: hue-rotate(340deg);
@@ -60,6 +60,26 @@ html, body {
   filter: hue-rotate(205deg);
 }
 
+/* Loading indicator styling */
+#loading-mushrooms {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 450ms ease-in-out;
+}
+
+#loading-mushrooms.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 .lds-dual-ring {
   display: inline-block;
   width: 80px;

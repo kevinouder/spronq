@@ -11,6 +11,9 @@ import 'leaflet/dist/leaflet.css';
 //Define globals.
 const mapElm = document.querySelector<HTMLDivElement>('#map')!;
 const loadingElm = document.querySelector<HTMLDivElement>('#loading-mushrooms')!;
+const filtersElm = document.querySelector<HTMLDivElement>('#filters')!;
+const colorsFilterElm = document.querySelector<HTMLDivElement>('#colors')!;
+const spotsFilterElm = document.querySelector<HTMLDivElement>('#spots')!;
 
 let map: Map;
 let mushroomData: MushroomInterface[] | never[] = [];
@@ -84,6 +87,7 @@ const initMap = (): void => {
     .then((data) => {
       mushroomData = data
       loadingElm.classList.add('hidden');
+      filtersElm.classList.remove('hidden');
       return data;
     })
     .catch(() => []);
