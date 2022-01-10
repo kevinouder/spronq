@@ -11,6 +11,26 @@ html, body {
   width: 100%;
 }
 
+#loading-mushrooms {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 450ms ease-in-out;
+}
+
+#loading-mushrooms.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .popup-list {
   padding: 0;
   list-style: none;
@@ -38,4 +58,31 @@ html, body {
 .mushroom-color-blue {
   -webkit-filter: hue-rotate(205deg);
   filter: hue-rotate(205deg);
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

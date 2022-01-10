@@ -10,6 +10,8 @@ import 'leaflet/dist/leaflet.css';
 
 //Define globals.
 const mapElm = document.querySelector<HTMLDivElement>('#map')!;
+const loadingElm = document.querySelector<HTMLDivElement>('#loading-mushrooms')!;
+
 let map: Map;
 let mushroomData: MushroomInterface[] | never[] = [];
 
@@ -79,7 +81,11 @@ const initMap = (): void => {
  */
  const getMushroomData = async (): Promise<MushroomInterface[]> => {
   return await mushrooms()
-    .then((data) => mushroomData = data)
+    .then((data) => {
+      mushroomData = data
+      loadingElm.classList.add('hidden');
+      return data;
+    })
     .catch(() => []);
 };
 

@@ -11,7 +11,7 @@ First run `npm install` or `yarn install` to install development dependencies
 
 ## ToDo
  - [x] Use the supplied api.ts script without alteration.
-    - [ ] Add loading state
+    - [x] Add loading state
  - [x] Render the mushrooms on a OpenStreetMap.
  - [x] If you click on one of the mushrooms it should show a popup with the mushroom properties.
  - [ ] Show two selectboxes to filter the mushrooms on respectivaly the spots and color properties.
