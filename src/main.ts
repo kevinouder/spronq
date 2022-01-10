@@ -1,8 +1,20 @@
+import { Map, TileLayer } from 'leaflet';
+
 import './style.css'
 
-const app = document.querySelector<HTMLDivElement>('#app')!
+const mapElm = document.querySelector<HTMLDivElement>('#map')!;
 
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+const initMap = () => {
+  const map = new Map(mapElm, {
+    center: [52.082042, 5.236192],
+    zoom: 17,
+  });
+
+  const layer = new TileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  );
+
+  map.addLayer(layer);
+};
+
+initMap();
