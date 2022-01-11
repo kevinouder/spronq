@@ -7,13 +7,13 @@ import { EnumInterface, OptionInterface } from '../types';
  * @param e
  * @return OptionInterface[]
  */
- export const convertEnumToArray = (e: EnumInterface): OptionInterface[] =>
- Object.values(e)
-   .filter((value) => typeof value === 'string')
-   .map((label, index) => ({
-     label,
-     value: index.toString(),
-   }));
+export const convertEnumToArray = (e: EnumInterface): OptionInterface[] =>
+  Object.values(e)
+    .filter((value) => typeof value === 'string')
+    .map((label, index) => ({
+      label,
+      value: index.toString(),
+    }));
 
 /**
  * Create html string based on mushroom.
@@ -21,7 +21,7 @@ import { EnumInterface, OptionInterface } from '../types';
  * @param mushroom
  * @returns string
  */
- export const generatePopUpHTML = (mushroom: MushroomInterface): string => {
+export const generatePopUpHTML = (mushroom: MushroomInterface): string => {
   let popUpHtml: string = '<ul class="popup-list">';
   popUpHtml += `<li class="capitalize">Name: ${mushroom.name}</li>`;
   popUpHtml += `<li class="capitalize">Spots: ${Spots[mushroom.spots]}</li>`;
@@ -38,7 +38,7 @@ import { EnumInterface, OptionInterface } from '../types';
  * @param options
  * @return void
  */
- export const createFilter = (
+export const createFilter = (
   filterElm: HTMLSelectElement,
   options: OptionInterface[],
   filterFunc: Function,
